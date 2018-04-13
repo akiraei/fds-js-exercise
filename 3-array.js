@@ -11,7 +11,13 @@
 // 루프로 만들면 된다! 루프와 푸시
 
 
-
+function arraying (s,e) {
+  let arr = [];
+  for (let i = s; i < e+1; i++){
+    arr.push(i);
+  }
+  return arr;
+}
 
 
 
@@ -24,9 +30,9 @@
 
 
 // 루프
-
-
-
+let arr = [1,2,3];
+let k = arr => arr.reduce((x,y) => x+y, 0)
+k(arr)
 
 
 
@@ -40,6 +46,10 @@
 
 // 루프 조건 푸시
 
+let arr = [1, 2, 3, null, false, NaN]
+let k = arr => arr.filter(item => Boolean(item) === true)
+k(arr)
+
 
 
 
@@ -47,6 +57,30 @@
 
 // 배열을 입력받아, 중복된 요소가 제거된 새 배열을 반환하는 함수를 작성하세요.
 
+
+let arr = [1,1,2,2,3,3,4,4,5,5]
+
+
+let k = arr => arr.filter((item,index,array) => {
+  let count = 0;
+
+
+for ( let i = 0; i < index; i++){
+if (item === array[i]) {
+  count = 1
+}
+}
+
+
+
+if ( count === 0) {
+  return true;
+} else {return false;}
+
+})
+
+
+k(arr)
 
 // 2중 루프?
 
@@ -71,6 +105,10 @@
 
 
 // 루프 조건 푸시
+
+
+
+
 
 
 

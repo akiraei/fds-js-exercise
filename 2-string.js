@@ -516,7 +516,26 @@ max_word_length(str);
 
 
 // 루프를 n까지만 가져간뒤
-// 어레이에 저장해서 조합
+// sum += element로 저장.
+// 혹은 그냥 slice로...
+// 왜 굳이 map join으로....
+
+function returny (s, n) {
+  let sum ="";
+for (let i =0 ; i < n; i++){
+  sum += s[i];
+}
+return sum;
+}
+
+
+returny ("abcdefg", 4)
+
+
+
+
+
+
 
 
 
@@ -529,8 +548,128 @@ max_word_length(str);
 
 
 // 대소문자 확인 함수로 조건문 만들어서 조합
+// Switch case를 해도 될 듯. 죄다 if 로 하는 것 보다
 
 
+
+function camelst (s) {
+  let count = 0;
+  for (let i = 0; i < s.length; i++){
+    if ( s[i].toUpperCase() === s[i] && s[i].toUpperCase() !== s[i].toLowerCase()) {
+      count++;
+    }
+  }
+  if (count !== 0) {
+    return 3
+  } else { return 1}
+}
+
+function snakest (s) {
+  let count = 0;
+  for (let i = 0; i < s.length; i++){
+    if ( s[i] === "_") {
+      count++;
+    }
+  }
+  if (count !== 0) {
+    return 2
+  } else { return 1}
+}
+
+
+function cameler (s) {
+  let sum = "";
+  for (let i = 0; i < s.length; i++){
+    if (s[i] === "_"){
+      sum += s[i+1].toUpperCase();
+      i++;
+    } else {
+      sum += s[i];
+    }
+  }
+  return sum;
+}
+
+
+function snaker (s) {
+  let sum = "";
+  for (let i = 0; i < s.length; i++){
+    if ( s[i].toUpperCase() === s[i]){
+      sum = sum + "_" + s[i].toLowerCase();
+    } else {
+      sum += s[i];
+    }
+  }
+  return sum;
+}
+
+
+function transy (s) {
+  let answer;
+  let count = camelst(s) * snakest(s);
+  switch (count) {
+    case 2: 
+    answer = cameler(s);
+    break;
+    case 3:
+    answer = snaker(s);
+    break;
+    case 6:
+    answer = "why are you doing that?"
+    break;
+    case 1:
+    answer = s;
+    break;
+    default:
+    answer = s;
+    break;
+  }
+  return answer;
+  }
+
+
+  let str = "toUpperCase"
+  let str2 = "to_snake_case"
+  
+  console.log(camelst (str))
+  console.log(cameler (str))
+  console.log(snakest (str))
+  console.log(snaker (str))
+  console.log(transy (str))
+  console.log(transy (str2))
+
+
+
+
+//------------------------------------------------
+
+function transy (s) {
+  let answer = "";
+  for (let i = 0; i < s.length; i++){
+
+    switch (true) {
+      case (s[i].toUpperCase() === s[i] && s[i].toUpperCase() !== s[i].toLowerCase()): 
+      answer += "_" + s[i].toLowerCase();
+      break;
+      case (s[i] === "_"):
+      answer += s[i+1].toUpperCase(); i++;
+      break;
+      default:
+      answer += s[i];
+      break;
+    }
+  }
+    return answer;
+  }
+  
+
+  let str = "toUpperCase"
+  let str2 = "to_snake_case"
+
+  console.log(transy (str))
+  console.log(transy (str2))
+
+// 더 짧게 만든 버젼
 
 
 
@@ -564,7 +703,7 @@ max_word_length(str);
 
 
 function find_location (x, y) {
-  let arr= [0];
+  let arr= [];
   for (let i = 0; i < x.length; i++){
     if ( x[i] === y) {
       arr.push(i);
@@ -584,7 +723,7 @@ function str_split (x, y) {
   console.log(arr_y)
   for (let i = 1; i< arr_y.length; i++){
     console.log("i",i)
-    if( i === 1){
+    if( i === 1){ //y가 undefined는 아니지만 x안에는 없는 경우를 위해서 이러한 경우를 지정해 주는 것이 필요 한듯.
       arr.push(x.slice(arr_y[i-1],arr_y[i]))
     } else {arr.push(x.slice(arr_y[i-1]+1,arr_y[i])) }
     
@@ -593,14 +732,30 @@ function str_split (x, y) {
 }}
 
 
+
+
 str_split ('let,const,var', ',')
 
 
+// ------------------------------------------------
 
+function collector (x, y) {
+  let arr = [];
+  let str = "";
+  for (let i = 0; i < x.length; i++) {
+    if (x[i+1] === y || x[i+1] === undefined) {
+      str += x[i];
+      arr.push(str);
+      str = "";
+    } else { str += x[i]
+      }
+  }
+  return arr;
+}
 
+collector ('let,const,var', ',')
 
-
-
+// 위는 나의 해답. 이것이 더 짧다.
 
 
 
@@ -618,20 +773,9 @@ str_split ('let,const,var', ',')
 
 
 
-function str_narr (s) {
-  let l = [];
-  for (let i = 0; i < s.length; i++){
-    if ( s[i] === "1") {
-      l[i] = 1
-    } else { l[i] = 0
-  }
-}
-  return l;
-}
 
 
-function decimal (k) {
-  let arr = str_narr(k);
+function decimal (arr) {
   let sum =0;
   for (let i = 0; i < arr.length; i ++){
     sum = sum + arr[i] * (2 ** (arr.length - 1 - i));
