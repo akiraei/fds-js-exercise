@@ -194,6 +194,50 @@ k(arr)
 // 루프 조건 큰 순서대로  출력은 오브젝트?
 
 
+function big_small (x, y) {
+  let max = 0;
+  for (let i = 0; i < y.length; i++){
+    if(x > y[i]){
+      max = y[i]
+      return max;
+    }
+  }
+}
+
+function arr2obj (y) {
+  let obj = {};
+  for (let i = 0; i < y.lenght; i++){
+    obj[y[i]] = 0;
+  }
+  return obj
+}
+
+function getcha (x, y) {
+  let set = arr2obj(y);
+  let huddle = 0;
+  let rest = x;
+  while(rest === 0) {
+    huddle = big_small (rest, y);
+    rest -+ huddle;
+    set[huddle] += 1;
+  }
+  return set;
+}
+
+
+
+let arr = [100, 50, 10, 5, 1];
+let value = 263;
+
+console.log(big_small (value, arr))
+console.log(arr2obj (arr))
+console.log(getcha(value,arr))
+
+
+
+
+
+
 
 
 
