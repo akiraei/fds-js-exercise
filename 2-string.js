@@ -743,11 +743,14 @@ function collector (x, y) {
   let arr = [];
   let str = "";
   for (let i = 0; i < x.length; i++) {
-    if (x[i+1] === y || x[i+1] === undefined) {
-      str += x[i];
+    if (x[i] === y) {
       arr.push(str);
       str = "";
-    } else { str += x[i]
+    } else if (i === x.length - 1 ){
+      str += x[i]
+      arr.push(str)
+    }
+    else { str += x[i]
       }
   }
   return arr;

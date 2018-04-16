@@ -8,7 +8,7 @@
 ```js
 function returny (s, n) {
   let sum ="";
-for (let i =0 ; i < n; i++){
+for (let i =0 ; i < n && i < s.length; i++){
   sum += s[i];
 }
 return sum;
@@ -17,8 +17,16 @@ return sum;
 
 returny ("abcdefg", 4)
 ```
+```js
+function firstStr(s,n) {
+  return Array
+  .from(s)
+  .filter((item.index) => index <n)
+  .join('');
+}
 
-
+firstStr ("abcdefg", 4)
+```
 ---
 
 ### 문제 13
@@ -38,8 +46,22 @@ function snaker (s) {
   return sum;
 }
 ```
-
-
+```js
+function camelToSnake(str) {
+  let newStr= '';
+  for (let i = 0; i < str.length; i++){
+    if (str[i] === str[i].toUpperCase() && i !== 0) {
+      newStr += "_" + str[i].toLowerCase() 
+    } else { newStr += str[i].toLowerCase()}
+  }
+  return newStr;
+}
+```
+```js
+function camelToSnake(str) {
+  return str.replace(/([A-Z])/g, match => '_' + match[0].toLowerCase());
+}
+```
 
 ---
 
@@ -121,11 +143,14 @@ function collector (x, y) {
   let arr = [];
   let str = "";
   for (let i = 0; i < x.length; i++) {
-    if (x[i+1] === y || x[i+1] === undefined) {
-      str += x[i];
+    if (x[i] === y) {
       arr.push(str);
       str = "";
-    } else { str += x[i]
+    } else if (i === x.length - 1 ){
+      str += x[i]
+      arr.push(str)
+    }
+    else { str += x[i]
       }
   }
   return arr;
@@ -148,7 +173,7 @@ convertBinary('1101'); -> 13
 
 ```js
 function decimal (arr) {
-  let sum =0;
+  let sum = 0;
   for (let i = 0; i < arr.length; i ++){
     sum = sum + arr[i] * (2 ** (arr.length - 1 - i));
   }

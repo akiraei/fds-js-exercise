@@ -50,6 +50,19 @@ let arr = [1, 2, 3, null, false, NaN]
 let k = arr => arr.filter(item => Boolean(item) === true)
 k(arr)
 
+//-----------------------------------------
+
+let arr = [1, 2, 3, null, false, NaN]
+let k = arr => arr.filter(item => item) //강사의 수정. 호오...?!
+k(arr)
+
+
+//----------------------------------------
+
+function k(arr) {
+  return arr.filter(item => item); // 강사의 재수정. 함수화.
+}
+
 
 
 
@@ -236,6 +249,33 @@ console.log(getcha(value,arr))
 
 
 
+//------------------------------------------------------------
+
+function getcha (x, y) { // 강사의 solution을 보고 재수정
+  let set = {};
+  let huddle = 0;
+  let rest = x;
+  let i = 0;
+  while(rest > 0) {
+    if (rest - y[i] >= 0){
+      rest -= y[i];
+      if (set[y[i]]){
+        set[y[i]] += 1;
+      } else {
+        set[y[i]] = 1;
+      }  
+    } else {
+      i++;
+    }
+  }
+  return set;
+}
+
+let arr = [100, 50, 10, 5, 1];
+let value = 263;
+
+
+console.log(getcha(value,arr)) 
 
 
 
